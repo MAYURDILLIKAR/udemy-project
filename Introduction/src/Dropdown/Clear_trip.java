@@ -13,8 +13,7 @@ public class Clear_trip {
 		driver.get("https://www.cleartrip.com");
 		driver.manage().window().maximize();
 		Thread.sleep(5000);
-		driver.switchTo().alert().accept();
-
+		
 		System.out.println(driver.getTitle());
 
 		driver.findElement(By.id("Roundtrip")).click();
