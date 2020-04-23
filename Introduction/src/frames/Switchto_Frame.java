@@ -24,6 +24,7 @@ public class Switchto_Frame
 				
 		Actions action=new Actions(driver);
 		action.dragAndDrop(source, target).build().perform();
+		driver.switchTo().defaultContent();
 
 	}
 
