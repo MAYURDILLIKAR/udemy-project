@@ -1,3 +1,7 @@
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +20,8 @@ public class Test_rahul2 {
 		driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
 		System.out.println(driver.getTitle());
 		String default_window = driver.getWindowHandle();
+		// applying implicite wait .
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		// size of links on the footer page.
 		WebElement footer_links = driver.findElement(By.xpath("//div[@id='gf-BIG']"));
 		System.out.println(
@@ -29,16 +35,20 @@ public class Test_rahul2 {
 		// clicking all the links present in the first coll
 		// i is starting from 1 because at 0th place link is not a valid onein the web
 		// page .
-		for (int i = 1; i < first_Collom_links.findElements(By.tagName("a")).size(); i++)
-		{
-			String clickonlink= Keys.chord(Keys.CONTROL,Keys.ENTER);
+		for (int i = 1; i < first_Collom_links.findElements(By.tagName("a")).size(); i++) {
+			String clickonlink = Keys.chord(Keys.CONTROL, Keys.ENTER);
 			first_Collom_links.findElements(By.tagName("a")).get(i).sendKeys(clickonlink);
-			
+			Thread.sleep(5000);
 		}
+				Set<String> windows=driver.getWindowHandles();
+				Iterator<String>it=windows.iterator();
+				while(it.hasNext()) // it.hasnext() will check weather if there is any window is present or not. 
 		{
-
+					driver.switchTo().window(it.next());// this code is used if there is any window the move to it so it moves to the first window .
+					System.out.println(driver.getTitle());
 		}
 
 	}
+	}
 
-}
+
