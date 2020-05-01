@@ -25,6 +25,7 @@ public class Wallethub_creditcardpage
 		System.out.println("the header fount size is"+ creditcard_link);
 		//creditcard_link.click();
 		//WebElement move=driver.findElement(By.linkText("Credit Cards"));
+		System.out.println("the background colour is "+ creditcard_link.getCssValue("background-color"));
 
 		Actions a=new Actions(driver);
 		a.moveToElement(creditcard_link).build().perform();

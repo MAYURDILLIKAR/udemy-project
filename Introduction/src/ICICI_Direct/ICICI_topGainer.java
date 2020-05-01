@@ -9,23 +9,34 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ICICI_topGainer {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		System.setProperty("webdriver.chrome.driver", "src\\Driver\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://www.icicidirect.com/idirectcontent/Markets/MarketOverview.aspx");
 		System.out.println(driver.getTitle());
-WebElement TopGainer_link=driver.findElement(By.xpath("//div[@id='tblmktstatus']//tr[2]//td[1]//a[1]"));
-TopGainer_link.click();
-List<WebElement> TopGainer_table=driver.findElements(By.cssSelector("a[class='thickbox_Stats']"));
-int count=TopGainer_table.size();
-System.out.println("the count is " + count);
-for(int i=0;i<count;i++)
-{
-	String names=TopGainer_table.get(i).getText();
-	System.out.println("top gainers are" + names);
-}
+		WebElement TopGainer_link = driver.findElement(By.xpath("//div[@id='tblmktstatus']//tr[2]//td[1]//a[1]"));
+		TopGainer_link.click();
+		Thread.sleep(2000);
+		WebElement TopGainer_table = driver.findElement(By.xpath("//table[@id='TABLE_2']"));
+			
+		List<WebElement> TopGainer_list=TopGainer_table.findElements(By.className("thickbox_Stats"));
+		int count= TopGainer_list.size();
+		System.out.println("the count is " + count);
+		for (int i = 0; i <count; i++) 
+		{
+			if (i==20)
+			{
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//th[contains(@class,'table-page:next')]")).click();
+				Thread.sleep(2000);
+			}
+			String names= TopGainer_table.findElements(By.className("thickbox_Stats")).get(i).getText();
+			System.out.println("top gainers are" + names);
+			
+			}
+		}
 	}
 
-}
+
 ////div[@id='dvBseTopGain']//tbody//tr[1]
