@@ -27,6 +27,8 @@ public class Assignment8
 		Thread.sleep(2000);
 		id.sendKeys(Keys.ARROW_DOWN);
 		Thread.sleep(2000);
+		id.sendKeys(Keys.ARROW_DOWN);
+		id.sendKeys(Keys.ARROW_DOWN);
 		System.out.println("the text is " + id.getText());
 		//Javascript DOM can extract hidden elements
 		//because selenium cannot identify hidden elements - (Ajax implementation)
@@ -34,7 +36,15 @@ public class Assignment8
 		JavascriptExecutor js= (JavascriptExecutor)driver;
 		String script="return document.getElementById(\"autocomplete\").value;";
 		String text=  (String) js.executeScript(script);
-		System.out.println(text);
+		//System.out.println(text);
+		while(!text.equalsIgnoreCase("United States (USA)"))
+		{
+			id.sendKeys(Keys.ARROW_DOWN);
+			 text=  (String) js.executeScript(script);
+			Thread.sleep(2000);
+			System.out.println(text);
+		}
+		id.sendKeys(Keys.ENTER);
 	}
 
 }
