@@ -31,12 +31,19 @@ public class ICICI_topGainer {
 				driver.findElement(By.xpath("//th[contains(@class,'table-page:next')]")).click();
 				Thread.sleep(2000);
 			}
-			String names= TopGainer_table.findElements(By.className("thickbox_Stats")).get(i).getText();
-			System.out.println("top gainers are" + names);
-			
+			//String names= TopGainer_table.findElements(By.className("thickbox_Stats")).get(i).getText();
+			String names= TopGainer_table.findElements(By.tagName("tr")).get(i).getText();
+			System.out.println("top gainers are" +names);
+			if (names.contains("ITC LTD"))
+			{
+				System.out.println("itc is present in the top gainer list");
 			}
+			System.out.println(driver.findElement(By.xpath("//div[@id='dvBseTopGain']//tbody//tr[1]")).getText());
 		}
 	}
-
+}
 
 ////div[@id='dvBseTopGain']//tbody//tr[1]
+
+//div[@id='dvBseTopGain']//tr[2]
+
